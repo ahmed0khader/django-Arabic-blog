@@ -1,0 +1,58 @@
+*{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+html , body{
+    direction: rtl;
+    text-align: right;
+}
+a{
+    text-decoration: none;
+}
+.dropdown-menu .dropdown-item{
+    text-align: right;
+}
+
+.bg-secondary{
+    background-color: #666 !important;
+}
+.bg-light{
+    background-color: #CCC !important;
+
+}
+/* end INcloud */
+/* Start Sidebar Content Blog Index */
+.latest-pose, .latest-comment{
+    padding: 0 15px;
+}
+.latest-pose .latest-pose-item , .latest-comment .latest-comment-item{
+    padding: 6px;
+    border-bottom: 1px solid rgb(163, 154, 154);
+
+}
+.latest-pose li:first-child , .latest-comment li:first-child{
+    border-top: 0;
+}
+.latest-pose li:last-child , .latest-comment li:last-child{
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+.latest-pose .latest-pose-item a, .latest-comment .latest-comment-item a{
+    text-decoration: none;
+    transition: .3s;
+
+}
+.latest-pose .latest-pose-item a:hover, .latest-comment .latest-comment-item a:hover{
+    padding-right: 7px; 
+
+}
+/* End Sidebar Content Blog Index */
+/* Start Comments */
+.comment{
+    background-color: #f8f8f8f8;
+    border: 1px dashed #ccc
+}
+/* End Comments */
+
+/*Start User Form Register*/
+
+/*End User Form Register*/

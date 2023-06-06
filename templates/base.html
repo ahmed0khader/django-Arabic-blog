@@ -1,0 +1,179 @@
+{% load static %}
+{% load post_tag %}
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fonts Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@1,200&display=swap"
+        rel="stylesheet">
+    <!-- endFontsGoogle -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% if title %}
+    <title>مدونة | {{title}}</title>
+    {% else %}
+    <title>مدونة</title>
+    {% endif %}
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/mim-logo.png' %}" alt="شعار المدونة" width="30px">
+                مدونة</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">الرئسية</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            دوراتي
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">دورة بايثون</a></li>
+                            <li><a class="dropdown-item" href="#">دورة جانقو</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">دورة تصميم الواجهة الامامية</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">من أنا</a>
+                    </li>
+                </ul>
+                
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'new_post' %}">تدوينة جديدة </a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">الملف الشخصي</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">تسجيل خروج</a></li>
+                </ul>
+                {% else %}
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">تسجيل دخول</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">تسجيل </a></li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-8">
+                {% block content %}
+
+                {% endblock content %}
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <h3 class="text-center bg-secondary text-light p-2">اخر التدوينات</h3>
+                    {% latest_post %}
+                </div>
+                <div class="card mb-3">
+                    <h3 class="text-center bg-secondary text-light p-2">اخر التعليقات</h3>
+                    <ul class="list-group-flush latest-comment">
+                        {% latest_comment %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container-fluid">
+        <footer class="bg-secondary">
+            <div class="row">
+                <div class="col-md">
+                    <div class="card-group mt-3">
+                        <div class="card m-3">
+                            <h3 class="card-title text-center border-bottom p-2 m-3">من أنا</h3>
+                            <div class="card-body">
+                                <div class="tect-center">
+                                    <img src="{% static 'images/mim-logo.png' %}" alt="شعار المدونة" width="100px">
+                                </div>
+                                نص تجريبي نص تجريبي نص تجريبي نص تجريبي نص تجريبي نص تجريبي نص تجريبينص تجريبي
+                            </div>
+                        </div>
+                        <div class="card m-3">
+                            <h3 class="card-title text-center border-bottom p-2 m-3">مواقع هامة</h3>
+                            <div class="card-body">
+                                <ul>
+                                    <li><a href="">الموقع الاول </a></li>
+                                    <li><a href="">الموقع الثاني</a></li>
+                                    <li><a href="">الموقع الثالث</a></li>
+                                    <li><a href="">الموقع الرابع</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card m-3">
+                            <h3 class="card-title text-center border-bottom p-2 m-3">وسائل التواصل الاجتماعي</h3>
+                            <div class="card-body">
+                                <div class="text-center text-md-right">
+                                    <ul class="list-unstyled list-inline">
+                                        <li class="list-inline-item">
+                                            <a class="btn-floating btn-sm rgba-white-slight mx-1" href="">
+                                                <i class="fa-2x fa-brands fa-facebook text-secondary"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="btn-floating btn-sm rgba-white-slight mx-1" href="">
+                                                <i class="fa-2x fa-brands fa-twitter text-secondary"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="btn-floating btn-sm rgba-white-slight mx-1" href="">
+                                                <i class="fa-2x fa-brands fa-google-plus text-secondary"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="btn-floating btn-sm rgba-white-slight mx-1" href="">
+                                                <i class="fa-2x fa-brands fa-linkedin text-secondary"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="btn-floating btn-sm rgba-white-slight mx-1" href="">
+                                                <i class="fa-2x fa-brands fa-instagram-square text-secondary"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-md text-center">
+                    <small class="text-light">&copy; جميع الحقوق محفوظة </small>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

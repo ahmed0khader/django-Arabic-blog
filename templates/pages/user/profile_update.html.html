@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="border p-4 mb-5 register">
+    <h3 class="border-bottom pb-3 mb-3">تعديل الملف الشخصي</h3>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{user_form|crispy}}
+        <!-- {{profile_form|crispy}} -->
+        <div class="img">
+            <span style="display: block" class="mb-3">صورة الملف الشخصي *</span>
+            <br>
+            الصورة الحالية <a href="{{user.profile.image.url}}">{{user.profile.image}}</a>
+            <br>
+            <label for="image" class="btn btn-outline-secondary">اختار الصورة</label>
+            <input type="file" name="image" id="image" accept="image/*" style="display: none">
+        </div>
+        <button class="submit btn btn-secondary mt-4 mb-3" value="حفظ">حفظ</button>
+    </form>
+</div>
+<style>
+    .register form .form-group {
+        margin: 15px 0 15px 0;
+    }
+</style>
+{% endblock content %}
